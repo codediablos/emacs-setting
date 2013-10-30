@@ -1,0 +1,3 @@
+#name : printk("[Holiday][%s] ...\n", __func__);
+# --
+printk("[Holiday][%s] $0\n", __func__);
