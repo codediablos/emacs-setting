@@ -11,14 +11,8 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/mo-git-blame")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/tramp-2.2.7/lisp/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/android-mode")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/ecb")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/js2")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/iedit")
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
-
-;;### Add load custom theme path ###
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/zenburn-emacs/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
 
 ;; ### require ###
 (require 'cedet)
@@ -56,10 +50,10 @@
 ;; ### Setting backups ###
 ;; ______________________________________________________________________
 ;;(setq make-backup-files nil)
-(setq backup-directory-alist (quote (("." . "~/.emacs-backups"))))
+(setq backup-directory-alist (quote (("." . "~/.emacs.d/.backups"))))
 ;;(setq auto-save-default nil)
 (setq auto-save-file-name-transforms
-      `((".*" ,"~/.emacs-auto-save-list" t)))
+      `((".*" ,"~/.emacs.d/auto-save-list" t)))
 ;; ______________________________________________________________________
 
 ;; ### Make Emacs stop asking "Active processes exist; kill them and exit anyway" ###
@@ -74,13 +68,6 @@
 ;;(server-start)
 ;; ______________________________________________________________________
 
-
-;; ### emacs modes ###
-(autoload 'iedit-mode "iedit" "Edit multiple regions with the same content simultaneously." t)
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;; ______________________________________________________________________
-
 ;;
 ;; ### Auto select mode ###
 ;; ______________________________________________________________________
@@ -92,9 +79,6 @@
 (add-to-list 'auto-mode-alist '(".dts" . c-mode))
 ;; ______________________________________________________________________
 
-;;############ Enable narrow to region ##############
-(put 'narrow-to-region 'disabled nil)
-;; ______________________________________________________________________
 
 ;;
 ;;############ Kernel C style ##############
@@ -198,9 +182,6 @@
 (add-hook 'c-mode-hook
 	  (lambda ()
 	    (c-set-style "kernel-coding")))
-(add-hook 'c++-mode-hook
-	  (lambda ()
-	    (c-set-style "my-coding-style")))
 ;;	      (let* ((filename (buffer-file-name))
 ;;		     (is-kernel-code nil))
 ;;		(if filename
@@ -210,10 +191,6 @@
 ;;		(if is-kernel-code
 ;;		    (c-set-style "kernel-coding")
 ;;		  (c-set-style "my-coding-style")))))
-
-;;(add-hook 'c-mode-hook 'kernel-coding)
-;;(add-hook 'c++-mode-hook 'my-coding-style)
-
 (put 'set-goal-column 'disabled nil)
 ;; ______________________________________________________________________
 
@@ -296,13 +273,11 @@
 
 (semantic-load-enable-minimum-features)
 (semantic-load-enable-code-helpers)
-(semantic-load-enable-guady-code-helpers)
-(semantic-load-enable-excessive-code-helpers)
+;;(semantic-load-enable-guady-code-helpers)
+;;(semantic-load-enable-excessive-code-helpers)
 ;;(semantic-load-enable-semantic-debugging-helpers)
 ;;(require 'semantic-tag-folding nil 'noerror)
 ;;(global-semantic-tag-folding-mode 1)
-
-(global-semantic-stickyfunc-mode nil)
 ;; ______________________________________________________________________
 
 
@@ -377,12 +352,8 @@
 (require 'color-theme)
 (eval-after-load "color-theme"
   '(progn
-     (color-theme-initialize)))
-;;     (color-theme-hober)))
-
-;;(load-theme 'zenburn t)
-(load-theme 'solarized-dark t)
-;;(load-theme 'solarized-light t)
+     (color-theme-initialize)
+     (color-theme-hober)))
 ;; ______________________________________________________________________
 
 
@@ -525,38 +496,12 @@
 (defconst ecb-cedet-required-version-max '(1 1 4 9)
   "Maximum version of CEDET currently accepted by ECB.See `ecb-required-cedet-version-min' for an explanation.")
 (setq stack-trace-on-error t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ecb-layout-window-sizes nil)
- '(ecb-options-version "2.40"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(global-set-key [f1] 'ecb-hide-ecb-windows)
-(global-set-key [f2] 'ecb-show-ecb-windows)
-(global-set-key [f9] 'ecb-minor-mode)
-
-;;(define-key global-map "/C-c1" 'ecb-maximize-window-directories)
-;;(define-key global-map "/C-c2" 'ecb-maximize-window-sources)
-;;(define-key global-map "/C-c3" 'ecb-maximize-window-methods)
-;;(define-key global-map "/C-c4" 'ecb-maximize-window-history)
-;;(define-key global-map "/C-c`" 'ecb-restore-default-window-sizes)
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
 ;; ______________________________________________________________________
 
 ;;
 ;; ecb mode
 ;; ______________________________________________________________________
-;;(require 'nav)
-;;(nav-disable-overeager-window-splitting)
-;;(global-set-key [f8] 'nav-toggle)
+(require 'nav)
+(nav-disable-overeager-window-splitting)
+(global-set-key [f8] 'nav-toggle)
 ;; ______________________________________________________________________
