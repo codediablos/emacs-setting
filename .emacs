@@ -14,6 +14,8 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/ecb")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/js2")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/iedit")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/python-mode.el-6.1.2")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete-1.3.1")
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
 
 ;;### Add load custom theme path ###
@@ -37,6 +39,7 @@
 (global-set-key [f6] 'point-redo)
 (global-set-key [?\C-x ?\C-g] 'goto-line)
 (global-set-key [?\C-x ?\C-r] 'replace-string)
+;;(global-set-key [?\C-x ?\j] 'semantic-ia-fast-jump)
 (global-set-key [(meta n)] 'tabbar-forward-tab)
 (global-set-key [(meta p)] 'tabbar-backward-tab)
 ;;(global-set-key (kbd "<apps>") (lookup-key global-map (kbd "C-x")))
@@ -49,6 +52,20 @@
 ;;(define-key global-map "\C-x\C-r" 'replace-string)
 ;;(define-key semantic-tag-folding-mode-map (kbd "C-c , -") 'semantic-tag-folding-fold-block)
 ;;(define-key semantic-tag-folding-mode-map (kbd "C-c , +") 'semantic-tag-folding-show-block)
+;;(define-key global-map (kbd "M-/") 'semantic-ia-complete-symbol)
+(global-set-key [f12] 'semantic-ia-fast-jump)
+(global-set-key [S-f12]
+                (lambda ()
+                  (interactive)
+                  (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
+                      (error "Semantic Bookmark ring is currently empty"))
+                  (let* ((ring (oref semantic-mru-bookmark-ring ring))
+                         (alist (semantic-mrub-ring-to-assoc-list ring))
+                         (first (cdr (car alist))))
+                    (if (semantic-equivalent-tag-p (oref first tag)
+                                                   (semantic-current-tag))
+                        (setq first (cdr (car (cdr alist)))))
+                    (semantic-mrub-switch-tags first))))
 ;; ______________________________________________________________________
 
 
@@ -57,9 +74,9 @@
 ;; ______________________________________________________________________
 ;;(setq make-backup-files nil)
 (setq backup-directory-alist (quote (("." . "~/.emacs-backups"))))
-;;(setq auto-save-default nil)
-(setq auto-save-file-name-transforms
-      `((".*" ,"~/.emacs-auto-save-list" t)))
+(setq auto-save-default nil)
+;;(setq auto-save-file-name-transforms
+;;      `((".*" ,"~/.emacs-auto-save-list" t)))
 ;; ______________________________________________________________________
 
 ;; ### Make Emacs stop asking "Active processes exist; kill them and exit anyway" ###
@@ -90,6 +107,7 @@
 (add-to-list 'auto-mode-alist '("conf" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\Kconfig\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '(".dts" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;; ______________________________________________________________________
 
 ;;############ Enable narrow to region ##############
@@ -176,21 +194,14 @@
 		 (statement-cont . +))
 		))
 
-(defun linux-c-mode ()
-
-  "C mode with adjusted defaults for use with the Linux kernel."
-
-  (interactive)
-
-  (c-mode)
-
-  (c-set-style "K&R")
-
-  (setq tab-width 8)
-
-  (setq indent-tabs-mode t)
-
-  (setq c-basic-offset 8))
+;;(defun linux-c-mode ()
+;;  "C mode with adjusted defaults for use with the Linux kernel."
+;;  (interactive)
+;;  (c-mode)
+;;  (c-set-style "K&R")
+;;  (setq tab-width 8)
+;;  (setq indent-tabs-mode t)
+;;  (setq c-basic-offset 8))
 
 ;;(defvar kernel-keywords '("linux" "kernel" "driver")
 ;;  "Keywords which are used to indicate this file is kernel code.")
@@ -201,6 +212,11 @@
 (add-hook 'c++-mode-hook
 	  (lambda ()
 	    (c-set-style "my-coding-style")))
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode t)
+	    (setq python-indent 8)
+	    (setq tab-width 4)))
 ;;	      (let* ((filename (buffer-file-name))
 ;;		     (is-kernel-code nil))
 ;;		(if filename
@@ -301,17 +317,34 @@
 ;;(semantic-load-enable-semantic-debugging-helpers)
 ;;(require 'semantic-tag-folding nil 'noerror)
 ;;(global-semantic-tag-folding-mode 1)
-
+(global-semantic-decoration-mode nil)
 (global-semantic-stickyfunc-mode nil)
+;; ______________________________________________________________________
+
+
+;;
+;; python-mode
+;;
+(require 'python-mode)
+
+(setq py-shell-name "ipython")
+(setq py-load-pymacs-p t)
+;; ______________________________________________________________________
+
+;;
+;; auto-complete
+;;
+(require 'auto-complete-config)
+(ac-config-default)
+(ac-set-trigger-key "TAB")
 ;; ______________________________________________________________________
 
 
 ;;
 ;; bing translate
 ;; ______________________________________________________________________
-(require 'bing-translate-api)
 ;; Your appId. Application at http://www.bing.com/toolbox/bingdeveloper/
-(defvar bingtranslate-appId "DF9E54CA96F73F2E289AEC059F407DE8295A6515")
+(defvar bingtranslate-appId "RzST1D9TBCZ34kYPD2Pm0PmGaSfNojInLLzmXDlsmhk")
 
 ;; Your priority language to translate from.
 (defvar bingtranslate-from-priority "en")
@@ -319,6 +352,7 @@
 ;; Your priority language to translate to.
 (defvar bingtranslate-to-priority "zh-CHT")
 
+(require 'bing-translate-api)
 ;; key bounding
 (global-set-key [M-f1] 'bingtranslate-region-or-input)
 

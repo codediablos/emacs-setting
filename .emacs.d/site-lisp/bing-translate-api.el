@@ -49,7 +49,8 @@
 
 ;; public var
 
-(defcustom bingtranslate-service "http://api.microsofttranslator.com/V2/Ajax.svc/Translate?"
+;;(defcustom bingtranslate-service "http://api.microsofttranslator.com/V2/Ajax.svc/Translate?"
+(defcustom bingtranslate-service "http://translate.google.com/#en/zh-TW/"
   "Service to use for translation."
   :group 'bingtranslate
   :type 'string)
@@ -64,7 +65,7 @@
   :group 'bingtranslate
   :type 'string)
 
-(defcustom bingtranslate-to-priority "zh-CHS"
+(defcustom bingtranslate-to-priority "zh-CHT"
   "Priority to language."
   :group 'bingtranslate
   :type 'string)
