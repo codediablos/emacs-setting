@@ -115,6 +115,17 @@
 ;; ______________________________________________________________________
 
 ;;
+;;############ Closing all other buffers in Emacs ##############
+
+(defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer
+          (delq (current-buffer)
+                (remove-if-not 'buffer-file-name (buffer-list)))))
+;; ______________________________________________________________________
+
+;;
 ;;############ Kernel C style ##############
 ;; ______________________________________________________________________
 ;;(setq c-basic-offset 8)
@@ -593,4 +604,22 @@
 ;;(require 'nav)
 ;;(nav-disable-overeager-window-splitting)
 ;;(global-set-key [f8] 'nav-toggle)
+;; ______________________________________________________________________
+
+;;
+;; web mode
+;; ______________________________________________________________________
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-engines-alist
+      '(("php"    . "\\.phtml\\'")
+        ("blade"  . "\\.blade\\."))
+)
 ;; ______________________________________________________________________
