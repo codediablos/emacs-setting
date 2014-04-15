@@ -16,6 +16,8 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/iedit")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/python-mode.el-6.1.2")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete-1.3.1")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/jade-mode")
+
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
 
 ;;### Add load custom theme path ###
@@ -622,4 +624,13 @@
       '(("php"    . "\\.phtml\\'")
         ("blade"  . "\\.blade\\."))
 )
+;; ______________________________________________________________________
+
+;;
+;; jade-mode
+;; ______________________________________________________________________
+(require 'sws-mode)
+(require 'jade-mode)
+(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 ;; ______________________________________________________________________
