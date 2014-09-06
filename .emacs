@@ -1,7 +1,5 @@
 ;;### Add load path ###
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/common")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/semantic-ia")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
@@ -17,6 +15,26 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/python-mode.el-6.1.2")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete-1.3.1")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/jade-mode")
+
+;; check OS type
+(cond
+ ((string-equal system-type "windows-nt") ; Microsoft Windows
+;;  (progn
+;;    (message "Microsoft Windows") )
+  )
+ ((string-equal system-type "darwin")   ; Mac OS X
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-mac/common")
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-mac/semantic")
+;;  (progn
+;;    (message "Mac OS X") )
+  )
+ ((string-equal system-type "gnu/linux") ; linux
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-linux/common")
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-linux/semantic")
+;;  (progn
+;;    (message "Linux") )
+  )
+ )
 
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
 
@@ -68,6 +86,10 @@
                                                    (semantic-current-tag))
                         (setq first (cdr (car (cdr alist)))))
                     (semantic-mrub-switch-tags first))))
+
+;;osx keys
+;;(setq mac-option-key-is-meta 'meta)
+;;(setq mac-command-key-is-meta nil)
 ;; ______________________________________________________________________
 
 
@@ -120,11 +142,11 @@
 ;;############ Closing all other buffers in Emacs ##############
 
 (defun kill-other-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (mapc 'kill-buffer
-          (delq (current-buffer)
-                (remove-if-not 'buffer-file-name (buffer-list)))))
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer
+	(delq (current-buffer)
+	      (remove-if-not 'buffer-file-name (buffer-list)))))
 ;; ______________________________________________________________________
 
 ;;
@@ -227,7 +249,7 @@
 	    (c-set-style "my-coding-style")))
 (add-hook 'python-mode-hook
 	  (lambda ()
-	    (setq indent-tabs-mode t)
+	    (setq indent-tabs-mode nil)
 	    (setq python-indent 8)
 	    (setq tab-width 4)))
 ;;	      (let* ((filename (buffer-file-name))
@@ -623,7 +645,7 @@
 (setq web-mode-engines-alist
       '(("php"    . "\\.phtml\\'")
         ("blade"  . "\\.blade\\."))
-)
+      )
 ;; ______________________________________________________________________
 
 ;;
@@ -633,4 +655,12 @@
 (require 'jade-mode)
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+;; ______________________________________________________________________
+
+;;
+;; whitespace
+;; ______________________________________________________________________
+(require 'whitespace)
+(autoload 'whitespace-mode           "whitespace" "Toggle whitespace visualization."        t)
+(autoload 'whitespace-toggle-options "whitespace" "Toggle local `whitespace-mode' options." t)
 ;; ______________________________________________________________________
