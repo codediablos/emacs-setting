@@ -1,0 +1,30 @@
+[submodule ".emacs.d/site-lisp/iedit"]
+	path = .emacs.d/site-lisp/iedit
+	url = https://github.com/victorhge/iedit
+[submodule ".emacs.d/site-lisp/android-mode"]
+	path = .emacs.d/site-lisp/android-mode
+	url = https://github.com/remvee/android-mode
+[submodule ".emacs.d/site-lisp/yasnippet"]
+	path = .emacs.d/site-lisp/yasnippet
+	url = https://github.com/capitaomorte/yasnippet
+[submodule ".emacs.d/site-lisp/cedet"]
+	path = .emacs.d/site-lisp/cedet
+	url = https://github.com/emacsmirror/cedet
+[submodule ".emacs.d/site-lisp/markdown-mode"]
+	path = .emacs.d/site-lisp/markdown-mode
+	url = https://github.com/defunkt/markdown-mode
+[submodule ".emacs.d/site-lisp/jade-mode"]
+	path = .emacs.d/site-lisp/jade-mode
+	url = https://github.com/brianc/jade-mode
+[submodule ".emacs.d/site-lisp/python-mode"]
+	path = .emacs.d/site-lisp/python-mode
+	url = https://github.com/emacsmirror/python-mode
+[submodule ".emacs.d/site-lisp/auto-complete"]
+	path = .emacs.d/site-lisp/auto-complete
+	url = https://github.com/auto-complete/auto-complete
+[submodule ".emacs.d/site-lisp/popup-el"]
+	path = .emacs.d/site-lisp/popup-el
+	url = https://github.com/auto-complete/popup-el
+[submodule ".emacs.d/site-lisp/melpa"]
+	path = .emacs.d/site-lisp/melpa
+	url = https://github.com/milkypostman/melpa.git

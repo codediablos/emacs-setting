@@ -9,12 +9,17 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/ecb")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/js2")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/iedit")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/python-mode.el-6.1.2")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete-1.3.1")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/python-mode")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/popup-el")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/jade-mode")
 
 ;;(setq debug-on-error t)
 (which-function-mode 1)
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
 
 ;; check OS type
 (cond
