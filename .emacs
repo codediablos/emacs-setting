@@ -1,12 +1,9 @@
 ;;### Add load path ###
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/yasnippet-0.6.1c")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/yasnippet")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/markdown-mode")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-w3m/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-jabber-0.8.91/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/magit")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/mo-git-blame")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/tramp-2.2.7/lisp/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/android-mode")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/ecb")
@@ -15,6 +12,9 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/python-mode.el-6.1.2")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete-1.3.1")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/jade-mode")
+
+;;(setq debug-on-error t)
+(which-function-mode 1)
 
 ;; check OS type
 (cond
@@ -29,12 +29,14 @@
 ;;    (message "Mac OS X") )
   )
  ((string-equal system-type "gnu/linux") ; linux
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-linux/common")
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-linux/semantic")
+  (load-file "~/.emacs.d/site-lisp/cedet/cedet-devel-load.el")
+;;  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet/lisp/cedet")
+;;  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet/lisp/cedet/semantic")
 ;;  (progn
 ;;    (message "Linux") )
   )
  )
+
 
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
 
@@ -48,7 +50,7 @@
 (require 'point-undo)
 (require 'sudoku)
 ;;(require 'bitlbee)
-(require 'magit)
+;;(require 'magit)
 
 
 ;;
@@ -62,6 +64,8 @@
 ;;(global-set-key [?\C-x ?\j] 'semantic-ia-fast-jump)
 (global-set-key [(meta n)] 'tabbar-forward-tab)
 (global-set-key [(meta p)] 'tabbar-backward-tab)
+(global-set-key [f8] 'point-undo)
+(global-set-key [f7] 'point-redo)
 ;;(global-set-key (kbd "<apps>") (lookup-key global-map (kbd "C-x")))
 ;;(global-set-key (kbd "<apps>") 'goto-line)
 ;;(global-set-key [C-A-f5] 'goto-line)
@@ -247,10 +251,14 @@
 (add-hook 'c++-mode-hook
 	  (lambda ()
 	    (c-set-style "my-coding-style")))
+(add-hook 'c++-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)
+	    (setq tab-width 4)))
 (add-hook 'python-mode-hook
 	  (lambda ()
 	    (setq indent-tabs-mode nil)
-	    (setq python-indent 8)
+	    (setq python-indent 4)
 	    (setq tab-width 4)))
 ;;	      (let* ((filename (buffer-file-name))
 ;;		     (is-kernel-code nil))
@@ -336,24 +344,34 @@
 ;; yasnippet
 ;; ______________________________________________________________________
 (yas/initialize)
-(yas/load-directory "~/.emacs.d/site-lisp/yasnippet-0.6.1c/snippets")
+(yas/load-directory "~/.emacs.d/site-lisp/yasnippet/snippets")
 ;; ______________________________________________________________________
 
 
 ;;
 ;; semantic-ia
 ;; ______________________________________________________________________
-(require 'semantic-ia)
 
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
+
+;; Enable Semantic
+(semantic-mode 1)
+;; Enable EDE (Project Management) features
+(global-ede-mode 1)
+
+;;(require 'semantic)
 (semantic-load-enable-minimum-features)
 (semantic-load-enable-code-helpers)
-(semantic-load-enable-guady-code-helpers)
+(semantic-load-enable-gaudy-code-helpers)
 (semantic-load-enable-excessive-code-helpers)
 ;;(semantic-load-enable-semantic-debugging-helpers)
 ;;(require 'semantic-tag-folding nil 'noerror)
 ;;(global-semantic-tag-folding-mode 1)
 (global-semantic-decoration-mode nil)
-(global-semantic-stickyfunc-mode nil)
+(global-semantic-stickyfunc-mode 0)
+
 ;; ______________________________________________________________________
 
 
@@ -443,14 +461,14 @@
 ;;
 ;; color-theme
 ;; ______________________________________________________________________
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)))
+;;(require 'color-theme)
+;;(eval-after-load "color-theme"
+;;  '(progn
+;;     (color-theme-initialize)))
 ;;     (color-theme-hober)))
 
 ;;(load-theme 'zenburn t)
-(load-theme 'solarized-dark t)
+;;(load-theme 'solarized-dark t)
 ;;(load-theme 'solarized-light t)
 ;; ______________________________________________________________________
 
@@ -583,7 +601,7 @@
 ;; android mode
 ;; ______________________________________________________________________
 (require 'android-mode)
-;;(setq android-mode-sdk-dir "~/Android/android-sdk-linux")
+(setq android-mode-sdk-dir "~/Android/android-sdk-linux")
 (setq android-mode-sdk-dir "~/Android/android-sdks")
 ;; ______________________________________________________________________
 

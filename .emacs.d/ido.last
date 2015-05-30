@@ -1,0 +1,93 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/com/codediablos/" . "money/")
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/com/" . "codediablos/")
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/" . "com/")
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/" . "src/")
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/" . "MyMoney/")
+ ("/home/codediablos/Dropbox/Code/android/project/" . "MyMoney/")
+ ("/home/codediablos/Dropbox/Code/android/" . "project/")
+ ("/home/codediablos/Dropbox/Code/" . "android/")
+ ("/home/codediablos/Dropbox/" . "Code/")
+ ("/home/codediablos/.gnome/" . "apps/")
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet-1.1-mac/" . "semantic/")
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet/lisp/cedet/" . "semantic/")
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet/lisp/" . "cedet/")
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet/" . "lisp/")
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/" . "cedet-1.1-mac/")
+ ("/home/codediablos/emacs-setting/.emacs.d/" . "site-lisp/")
+ ("/home/codediablos/emacs-setting/" . ".emacs.d/")
+ ("/home/codediablos/" . "Dropbox/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/com/codediablos/money/"
+ "/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/"
+ "/home/codediablos/.gnome/apps/"
+ "/home/codediablos/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "MoneyActivity.java"
+ "MoneyApplication.java"
+ "BackupAgent.java"
+ "AndroidManifest.xml"
+ "chrome-aohghmighlieiainnegkcijnfilokake-Default.desktop"
+ ".emacs"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/com/codediablos/money/" (21865 58386 823317 937000) "chart/" "../" "WSCustomAd.java" "BackupAgent.java" "MoneyApplication.java" "widget/" "controller/" "task/" "MoneyWidgetProvider.java" "VponCustomAd.java" "Utility.java" "MoneyActivity.java" "service/" "dbdata/" "./" "adapter/" "fragment/")
+
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/com/codediablos/" (21865 51533 440906 292000) "../" "./" "money/")
+
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/com/" (21865 51369 16334 253000) "../" "codediablos/" "./")
+
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/src/" (21865 50725 511346 253000) "../" "com/" "./")
+
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/MyMoney/" (21865 51403 275702 550000) "ic_launcher-web.psb" "libs/" "bin/" "AndroidManifest.xml" "../" "https:/" "project.properties" "lint.xml" "proguard-project.txt" ".project" ".classpath" ".metadata/" "ic_launcher-web.png" "res/" "src/" "./" ".settings/" "assets/" "MyMoneyIcon.png" "gen/" ".git/" "MyMoneyIcon.psd")
+
+ ("/home/codediablos/Dropbox/Code/android/project/MyMoney/" (21865 50478 104341 157000) "MyMoney/" "../" "Demo/" ".metadata/" "./")
+
+ ("/home/codediablos/Dropbox/Code/android/project/" (21865 50517 111749 345000) "MyMoney/" "MyWeight/" "TravelApp/" "../" "TravelAppOld/" "./" "Test/" "ToSWatching/" "ACA/" "YourNews/")
+
+ ("/home/codediablos/Dropbox/Code/android/UIUIX/" (21865 51664 43538 24000) "Android UI Design Kit PSD 4.2.zip" "../" "Android_Design_Downloads_20120823.zip" "Android UI Design Kit for Photoshop 4.2.1.zip" "Android UI Design Kit PPTX 1.0.zip" "./" "Android UI Design Kit for Google Slides 1.0.pptx" "Android_Design_Icons_20120814.zip")
+
+ ("/home/codediablos/Dropbox/Code/android/" (21865 50585 386180 460000) "../" "UIUIX/" "release/" "project/" "myapp.key.store" "./" "google_play_services/")
+
+ ("/home/codediablos/Dropbox/Code/" (21865 50497 666344 316000) "editor/" "../" "fortran/" "node.js/" "leap/" "python/" "interview/" "iOS/" "c/" "./" "c_plus_plus/" "windowsbat/" "ctci/" "github/" "android/")
+
+ ("/home/codediablos/Dropbox/" (21865 55795 580007 780000) "Public/" "../" "Photos/" "Code/" "Camera Uploads/" "Docs/" "Account/" "Apps/" "ShareFolder/" ".dropbox" "Android/" "Running/" "./" "Fonts/" "Software/" "Linux/" ".dropbox.cache/" "Download/" "Music/" "Icons/" "MymYMYmy/" "Book/")
+
+ ("/home/codediablos/.gnome/apps/" (21865 50128 947895 64000) "../" "chrome-blpcfgokakmgnkcojhhkbfbldkacnbeo-Default.desktop" "chrome-aohghmighlieiainnegkcijnfilokake-Default.desktop" "./" "chrome-coobgpohoikkiipiblmjeljniedjpjpf-Default.desktop" "chrome-pjkljhegncpnkpknbcohdijeoejaedia-Default.desktop" "chrome-apdfllckaahabafndbhieahigkjlhalf-Default.desktop")
+
+ ("/home/codediablos/" (21865 57155 544983 368000) ".dbshell" "Downloads/" ".xsession-errors.old" ".mozilla/" ".dropbox-dist/" ".dmrc" "Public/" ".Xauthority" ".emacs.d/" "Dropbox/" "Videos/" "../" ".bash_history" ".emacs-backups/" ".bashrc" "Desktop/" "emacs-setting/" ".local/" ".gconf/" ".emacs" ".mongorc.js" ".cache/" ".emacs~" "examples.desktop" ".sudo_as_admin_successful" ".dropbox/" ".semanticdb/" ".compiz/" ".ICEauthority" ".gnome/" ".gnupg/" "./" ".xsession-errors" "Music/" "Templates/" ".profile" ".bash_logout" "Documents/" ".config/" "Pictures/" ".pki/")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet-1.1-mac/semantic/" (21865 49572 44511 236000) "semantic-decorate-mode.el" "semantic-edit.elc" "semantic-tag-write.elc" "semantic-lex.elc" "semanticdb-debug.el" "semanticdb-ref.el" "semanticdb-search.el" "Makefile" "semantic-lex-spp.elc" "semantic-dep.el" "semantic-debug.el" "grammar-make-script" "semantic-grammar-wy.el" "semantic-chart.el" "semantic-doc.elc" "semantic-load.elc" "semantic-utest-c.el" "semantic-grammar.wy" "semanticdb-file.elc" "semantic-fmt-utest.elc" "Database-compile-script" "semantic-complete.el" "semantic-loaddefs.el~" "semantic-imenu.elc" "semantic-analyze-refs.el" "ChangeLog" "semantic-adebug.elc" "semantic-lex-spp.el" "semantic-ia.el" "semanticdb-cscope.el" "semantic-format.elc" "semantic-find.elc" "autoloads-compile-script" "semanticdb-mode.el" "semantic-analyze-fcn.el" "semantic-sort.el" "semanticdb-file.el" "semanticdb-typecache.elc" "semantic-doc.el" "semanticdb-global.el" "semantic-custom.el" "semantic-load.el" "senator.el" "semantic-regtest.elc" "semantic-loaddefs.el" "INSTALL" "Project.ede" "semantic-ede-grammar.el" "semantic-grammar-wy.el~" "Analyzer-compile-script" "semantic-complete.elc" "semanticdb-mk.elc" "semanticdb-find.elc" "utils-compile-script" "semantic-ast.elc" "semantic-dep.elc" "semantic-ctxt.elc" "semantic-compile-script" "wisent/" "semantic-edit.el" "semantic-ia-utest.el" "semanticdb-skel.el" "AUTHORS" "semantic-analyze.elc" "semantic-tag.el" "semantic-adebug.el" "semantic-tag-file.el" "semantic-analyze.el" "semanticdb-ref.elc" "semantic-regtest.el" "semantic-ia-sb.el" "semantic-fw.elc" "renamelist.txt" "semantic-scope.elc" "semantic-sort.elc" "semanticdb-ebrowse.elc" "OONEWS" "semantic-m3.elc" "semanticdb-global.elc" "doc/" "semantic-ast.el" "semantic-utest.elc" "semantic-custom.elc" "semantic-html.el" "semantic-find.el" "semantic-ia-sb.elc" "semantic-grammar.el" "semantic-tag-file.elc" "semantic-mru-bookmark.el" "semantic-util-modes.elc" "semantic-lex.el" "semanticdb-javascript.elc" "semantic-util.elc" "semanticdb-search.elc" "semantic-analyze-complete.el" "semantic-util-modes.el" "tests/" "tools-compile-script" "ctags/" "semantic-mru-bookmark.elc" "semantic-analyze-complete.elc" "semantic-utest-c.elc" "semantic-debug.elc" "semantic-decorate.elc" "semanticdb-javap.elc" "semantic-analyze-fcn.elc" "semanticdb-el.elc" "bovine/" "semantic-decorate-mode.elc" "semantic-tag-ls.elc" "semantic-decorate-include.elc" "semantic-imenu.el" "semantic-tag-ls.el" "semanticdb.elc" "semantic-idle.el" "semantic-m3.el" "init-compile-script" "semantic-sb.el" "semantic-tag-write.el" "semantic-decorate.el" "semantic-fmt-utest.el" "tests-compile-script" "semantic-html.elc" "semantic-elp.elc" "semantic-chart.elc" "semantic.elc" "semanticdb-debug.elc" "semantic-analyze-refs.elc" "semantic-grammar-wy.elc" "semantic.el" "semantic-texi.elc" "semantic-util.el" "semanticdb-ebrowse.el" "senator.elc" "semantic-fw.el" "semanticdb-javap.el" "semanticdb-cscope.elc" "semantic-decorate-include.el" "semanticdb-javascript.el" "semanticdb.sh" "semantic-example.el" "symref/" "semantic-utest.el" "semantic-analyze-debug.el" "semantic-ctxt.el" "ONEWS" "semanticdb-find.el" "semanticdb.el" "semantic-format.el" "semantic-sb.elc" "semanticdb-mk.el" "semantic-scope.el" "semantic-ia.elc" "Languages-compile-script" "semantic-idle.elc" "semanticdb-mode.elc" "semantic-texi.el" "semantic-analyze-debug.elc" "semantic-ia-utest.elc" "semantic-tag.elc" "semantic-grammar.elc" "semanticdb-el.el" "semanticdb-typecache.el" "semantic-elp.el" "../" "./")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet-1.1-mac/" (21865 49572 75986 195000) "Makefile" "../" "eieio/" "INSTALL" "contrib/" "cogre/" "ede/" "srecode/" "tests/" "speedbar/" "NEWS" "PRERELEASE_CHECKLIST" "semantic/" "./" "common/" "cedet-update-version.el" "USING_CEDET_FROM_BZR" "cedet-build.el")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/" (21865 52390 414355 388000) "auto-save-list/" "../" "ido.last" "site-lisp/" "themes/" "./" "ac-comphist.dat")
+
+ ("/home/codediablos/emacs-setting/" (21865 52380 814723 209000) ".emacs.d/" ".emacs.before_ecb_2.40" "../" ".emacs" "README.md" "./" "LICENSE" ".git/")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet/lisp/cedet/semantic/" (21865 52219 815952 506000) "symref.el" "tag-ls.elc" "dep.el" "texi.elc" "analyze/" "find.elc" "Makefile" "db-debug.el" "db-file.elc" "lex-spp.el" "db-typecache.elc" "canned-configs.el" "ctxt.el" "db-mk.el" "ectags/" "gram-wy-fallback.el" "loaddefs.el~" "db-cscope.el" "../" "analyze.el" "db-ref.el" "java.elc" "senator.el" "wisent.el" "texi.el" "ia-sb.elc" "ede-grammar.el" "Project.ede" "db-debug.elc" "lex-spp.elc" "tag-write.elc" "format.el" "sb.elc" "sort.el" "db-search.elc" "wisent/" "idle.el" "elp.el" "sb.el" "html.el" "grammar-wy.elc" "edit.el" "edit.elc" "custom.el" "canned-configs.elc" "ast.elc" "util.el" "db-javascript.elc" "chart.el" "db-mode.el" "db-search.el" "imenu.elc" "tag-write.el" "tag-file.el" "tag-ls.el" "util-modes.el" "db-mozrepl.elc" "complete.el" "doc.el" "custom.elc" "db-el.elc" "ctxt.elc" "grammar.el" "mru-bookmark.elc" "ia.elc" "bovine.el" "ast.el" "ia.el" "m3.el" "m3.elc" "idle.elc" "elp.elc" "tag.elc" "html.elc" "imenu.el" "adebug.elc" "util.elc" "db-global.elc" "bovine/" "grammar.elc" "debug.el" "loaddefs.el" "symref.elc" "util-modes.elc" "scope.el" "doc.elc" "grammar-wy.el" "db.elc" "fw.elc" "db-file.el" "adebug.el" "lex.el" "decorate.el" "./" "db-find.elc" "db-javap.elc" "tag-file.elc" "tag.el" "grammar.wy" "analyze.elc" "senator.elc" "db-mozrepl.el" "db-ebrowse.elc" "db-cscope.elc" "db-ebrowse.el" "db-el.el" "db-javascript.el" "gram-wy-fallback.elc" "symref/" "chart.elc" "mru-bookmark.el" "decorate.elc" "db.el" "wisent.elc" "db-find.el" "db-ref.elc" "format.elc" "find.el" "fw.el" "dep.elc" "decorate/" "complete.elc" "db-mk.elc" "db-mode.elc" "lex.elc" "db-typecache.el" "db-javap.el" "ia-sb.el" "debug.elc" "sort.elc" "scope.elc" "bovine.elc" "java.el" "db-global.el" "ede-grammar.elc")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet/lisp/cedet/" (21865 52219 100068 280000) "cedet-cscope.elc" "fame.el" "cedet-compat.el" "cogre.elc" "Makefile" "fame.elc" "cedet-m3.elc" "working.el" "cedet-android.el" "pulse.el" "cogre.el" "loaddefs.el~" "cedet-global.elc" "cedet-cscope.el" "../" "cedet-idutils.el" "srecode.elc" "cedet-compat.elc" "cedet.el" "cedet.elc" "data-debug.el" "data-debug.elc" "Project.ede" "cedet-global.el" "cedet-m3.el" "ede.elc" "cogre/" "cedet-android.elc" "ede/" "cedet-graphviz.el" "cedet-idutils.elc" "mode-local.el" "cedet-files.el" "srecode/" "cedet-java.elc" "cedet-java.el" "cedet-files.elc" "srecode.el" "loaddefs.el" "pulse.elc" "inversion.el" "semantic/" "semantic.elc" "./" "semantic.el" "cedet-edebug.elc" "cedet-graphviz.elc" "mode-local.elc" "pprint.elc" "cedet-edebug.el" "ede.el" "working.elc" "pprint.el" "inversion.elc")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet/lisp/" (21865 52013 548605 788000) "Makefile" "cedet/" "../" "eieio/" "Project.ede" "speedbar/" "./")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/cedet/" (21865 52013 929617 963000) ".cvsignore" "Makefile" "etc/" "../" "cedet-ediff.el" "INSTALL" "cedet-devel-load.el" "contrib/" "0__IMPORTANT__README__NEW_REPOSITORY" "cedet-remove-builtin.el" "lisp/" "cedet-emacs-merge.el" "obsolete/" "doc/" "CEDET_STYLE_GUIDE" "tests/" "NEWS" "gettodos.sh" "PRERELEASE_CHECKLIST" "./" ".ede-ignore" "testprojects/" ".git/" ".bzrignore" "Makefile.wwwinfo" "cedet-update-version.el" "cedet-update-changelog.el" "USING_CEDET_FROM_BZR" "testdist.sh" "cedet-build.el")
+
+ ("/home/codediablos/emacs-setting/.emacs.d/site-lisp/" (21865 52281 991380 199000) "cedet/" "markdown-mode/" "jade-mode/" "cedet-1.1-mac/" "undo-tree.el" "cflow-mode.el" "../" "iedit/" "ctab.el" "tabbar.el" "youdao-translate-api.el" "powerline.el" "emacs-jabber-0.8.91/" "emacs-nav-49/" "auto-complete-1.3.1/" "ecb/" "js2/" "tramp-2.2.7/" "color-theme-blackboard.el" "xcscope.el" "my-emacs.el" "whitespace.el" "./" "web-mode.el" "emacs-w3m/" "point-undo.el" "prepos.el" "sudoku.el" "yasnippet/" "python-mode.el-6.1.2/" "color-theme-6.6.0/" "android-mode/" "bitlbee.el" "bing-translate-api.el")
+
+ ("/home/codediablos/.gnome/" (21865 50127 234951 149000) "apps/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
