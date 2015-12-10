@@ -1,25 +1,54 @@
+;;### Add load config file ###
+(load-file "~/.emacs.d/minimial-cedet-config.el")
+
+(require 'package)
+;; list the packages you want
+(setq package-list '("auto-complete"))
+;; list the repositories containing them
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+			 ("gnu" . "http://elpa.gnu.org/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")))
+
+;; activate all the packages (in particular autoloads)
+(package-initialize)
+
+;; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; install the missing packages
+;(dolist (package package-list)
+;  (unless (package-installed-p package)
+;    (package-install package))
+
 ;;### Add load path ###
+(let ((base "~/.emacs.d/elpa/"))
+  (add-to-list 'load-path base)
+  (dolist (f (directory-files base))
+    (let ((name (concat base "/" f)))
+      (when (and (file-directory-p name)
+		 (not (equal f ".."))
+		 (not (equal f ".")))
+	(add-to-list 'load-path name)))))
+
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/yasnippet")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/markdown-mode")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-w3m/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-jabber-0.8.91/")
+;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-jabber-0.8.91/")
+;;(add-to-list 'load-path "~/.emacs.d/site-lisp/magit")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/mo-git-blame")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/tramp-2.2.7/lisp/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/android-mode")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/ecb")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/js2")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/iedit")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/python-mode")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/popup-el")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/jade-mode")
 
-;;(setq debug-on-error t)
-(which-function-mode 1)
+(setq debug-on-error t)
 
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
+;; Show the current function name in the header line
+(which-function-mode)
+;;(setq-default header-line-format
+;;	      '((which-func-mode ("" which-func-format " "))))
+;;(setq mode-line-misc-info
+      ;; We remove Which Function Mode from the mode line, because it's mostly
+      ;; invisible here anyway.
+;;                  (assq-delete-all 'which-func-mode mode-line-misc-info))
 
 ;; check OS type
 (cond
@@ -28,35 +57,33 @@
 ;;    (message "Microsoft Windows") )
   )
  ((string-equal system-type "darwin")   ; Mac OS X
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-mac/common")
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1-mac/semantic")
 ;;  (progn
 ;;    (message "Mac OS X") )
   )
  ((string-equal system-type "gnu/linux") ; linux
-  (load-file "~/.emacs.d/site-lisp/cedet/cedet-devel-load.el")
-;;  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet/lisp/cedet")
-;;  (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet/lisp/cedet/semantic")
 ;;  (progn
 ;;    (message "Linux") )
   )
  )
 
-
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
 
 ;;### Add load custom theme path ###
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/zenburn-emacs/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
+(add-to-list 'load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
+(add-to-list 'load-path "~/.emacs.d/themes/color-theme-sanityinc-tomorrow/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/ample-theme/")
+(require 'color-theme-sanityinc-tomorrow)
+(require 'color-theme-solarized)
 
 ;; ### require ###
-(require 'cedet)
-(require 'yasnippet)
+;;(require 'cedet)
 (require 'point-undo)
 (require 'sudoku)
 ;;(require 'bitlbee)
-;;(require 'magit)
+;; (require 'magit)
 
+(setq column-number-mode t)
 
 ;;
 ;; ### Key Binding ###
@@ -69,8 +96,8 @@
 ;;(global-set-key [?\C-x ?\j] 'semantic-ia-fast-jump)
 (global-set-key [(meta n)] 'tabbar-forward-tab)
 (global-set-key [(meta p)] 'tabbar-backward-tab)
-(global-set-key [f8] 'point-undo)
-(global-set-key [f7] 'point-redo)
+(global-set-key [f8] 'tabbar-forward-tab)
+(global-set-key [f7] 'tabbar-backward-tab)
 ;;(global-set-key (kbd "<apps>") (lookup-key global-map (kbd "C-x")))
 ;;(global-set-key (kbd "<apps>") 'goto-line)
 ;;(global-set-key [C-A-f5] 'goto-line)
@@ -134,13 +161,14 @@
 ;;
 ;; ### Auto select mode ###
 ;; ______________________________________________________________________
-(add-to-list 'auto-mode-alist '(".mk'" . makefile-mode))
+(add-to-list 'auto-mode-alist '(".mk'" . makefile-gmake-mode))
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\defconfig\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\COMMIT_EDITMSG\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("conf" . conf-mode))
+(add-to-list 'auto-mode-alist '(".conf'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\Kconfig\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '(".dts" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;; ______________________________________________________________________
 
 ;;############ Enable narrow to region ##############
@@ -256,7 +284,11 @@
 (add-hook 'c++-mode-hook
 	  (lambda ()
 	    (c-set-style "my-coding-style")))
-(add-hook 'c++-mode-hook
+(add-hook 'java-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)
+	    (setq tab-width 4)))
+(add-hook 'js2-mode-hook
 	  (lambda ()
 	    (setq indent-tabs-mode nil)
 	    (setq tab-width 4)))
@@ -348,45 +380,24 @@
 ;;
 ;; yasnippet
 ;; ______________________________________________________________________
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/site-lisp/yasnippet/snippets")
+(add-to-list 'load-path "~/.emacs.d/snippets")
+;;(require 'yasnippet)
+;;(yas-global-mode 1)
 ;; ______________________________________________________________________
-
 
 ;;
-;; semantic-ia
+;; nodejs-repl-mode
+;;
+(require 'nodejs-repl)
 ;; ______________________________________________________________________
-
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
-(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
-
-;; Enable Semantic
-(semantic-mode 1)
-;; Enable EDE (Project Management) features
-(global-ede-mode 1)
-
-;;(require 'semantic)
-(semantic-load-enable-minimum-features)
-(semantic-load-enable-code-helpers)
-(semantic-load-enable-gaudy-code-helpers)
-(semantic-load-enable-excessive-code-helpers)
-;;(semantic-load-enable-semantic-debugging-helpers)
-;;(require 'semantic-tag-folding nil 'noerror)
-;;(global-semantic-tag-folding-mode 1)
-(global-semantic-decoration-mode nil)
-(global-semantic-stickyfunc-mode 0)
-
-;; ______________________________________________________________________
-
 
 ;;
 ;; python-mode
 ;;
-(require 'python-mode)
+;;(require 'python-mode)
 
-(setq py-shell-name "ipython")
-(setq py-load-pymacs-p t)
+;;(setq py-shell-name "ipython")
+;;(setq py-load-pymacs-p t)
 ;; ______________________________________________________________________
 
 ;;
@@ -402,21 +413,21 @@
 ;; bing translate
 ;; ______________________________________________________________________
 ;; Your appId. Application at http://www.bing.com/toolbox/bingdeveloper/
-(defvar bingtranslate-appId "RzST1D9TBCZ34kYPD2Pm0PmGaSfNojInLLzmXDlsmhk")
+;;(defvar bingtranslate-appId "RzST1D9TBCZ34kYPD2Pm0PmGaSfNojInLLzmXDlsmhk")
 
 ;; Your priority language to translate from.
-(defvar bingtranslate-from-priority "en")
+;(defvar bingtranslate-from-priority "en")
 
 ;; Your priority language to translate to.
-(defvar bingtranslate-to-priority "zh-CHT")
+;;(defvar bingtranslate-to-priority "zh-CHT")
 
-(require 'bing-translate-api)
+;;(require 'bing-translate-api)
 ;; key bounding
-(global-set-key [M-f1] 'bingtranslate-region-or-input)
+;;(global-set-key [M-f1] 'bingtranslate-region-or-input)
 
 ;; add a pair of language
 ;; Parameters: "pair name" "from language" "to language"
-(bingtranslate-add-pair "1" "zh-CHT" "en")
+;;(bingtranslate-add-pair "1" "zh-CHT" "en")
 ;; ______________________________________________________________________
 
 
@@ -470,9 +481,13 @@
 ;;(eval-after-load "color-theme"
 ;;  '(progn
 ;;     (color-theme-initialize)))
-;;     (color-theme-hober)))
+;;     (color-theme-sanityinc-tomorrow-bright)))
 
+
+;;(load-theme 'bliss t)
+(load-theme 'monokai t)
 ;;(load-theme 'zenburn t)
+;;(load-theme 'sanityinc-tomorrow-bright t)
 ;;(load-theme 'solarized-dark t)
 ;;(load-theme 'solarized-light t)
 ;; ______________________________________________________________________
@@ -481,22 +496,22 @@
 ;;
 ;; jabber
 ;; ______________________________________________________________________
-(require 'jabber)
-(setq jabber-account-list
-      '(("codediablos@gmail.com"
-	 (:network-server . "talk.google.com")
-	 (:connection-type . ssl))))
+;;(require 'jabber)
+;;(setq jabber-account-list
+;;      '(("codediablos@gmail.com"
+;;	 (:network-server . "talk.google.com")
+;;	 (:connection-type . ssl))))
 ;; ______________________________________________________________________
 
 
 ;;
 ;; w3m
 ;; ______________________________________________________________________
-(require 'w3m)
-(require 'w3m-load)
+;;(require 'w3m)
+;;(require 'w3m-load)
 ;;(require 'mime-w3m)
-(setq w3m-use-cookies t)
-(setq w3m-default-display-inline-images t)
+;;(setq w3m-use-cookies t)
+;;(setq w3m-default-display-inline-images t)
 ;; ______________________________________________________________________
 
 
@@ -605,9 +620,9 @@
 ;;
 ;; android mode
 ;; ______________________________________________________________________
-(require 'android-mode)
-(setq android-mode-sdk-dir "~/Android/android-sdk-linux")
-(setq android-mode-sdk-dir "~/Android/android-sdks")
+;;(require 'android-mode)
+;;(setq android-mode-sdk-dir "~/Android/android-sdk-linux")
+;; (setq android-mode-sdk-dir "~/Android/android-sdks")
 ;; ______________________________________________________________________
 
 ;;
@@ -622,8 +637,50 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
+ '(compilation-message-face (quote default))
+ '(custom-safe-themes
+   (quote
+    ("183784d00a6fd5029d827512bc66eb28a4c3dac60a6803577c20592f61557dba" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "7a00b0710bb2e400d33a925f94b1cd8cfa2281f864ac9506b9046703e0045d66" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "6d1977ebe72065bf27f34974a9e5cb5dc0a7f296804376fad412d981dee7a7e4" "e4e97731f52a5237f37ceb2423cb327778c7d3af7dc831788473d4a76bcc9760" "e587bd7ea49915da4556c1f5b535e920cb3f65f033ae636ba8ed0d2ca2a14df4" default)))
  '(ecb-layout-window-sizes nil)
- '(ecb-options-version "2.40"))
+ '(ecb-options-version "2.40")
+ '(fci-rule-color "#49483E")
+ '(highlight-changes-colors ("#FD5FF0" "#AE81FF"))
+ '(highlight-tail-colors
+   (("#49483E" . 0)
+    ("#67930F" . 20)
+    ("#349B8D" . 30)
+    ("#21889B" . 50)
+    ("#968B26" . 60)
+    ("#A45E0A" . 70)
+    ("#A41F99" . 85)
+    ("#49483E" . 100)))
+ '(magit-diff-use-overlays nil)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -677,7 +734,7 @@
 (require 'sws-mode)
 (require 'jade-mode)
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+;;(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 ;; ______________________________________________________________________
 
 ;;
@@ -686,4 +743,38 @@
 (require 'whitespace)
 (autoload 'whitespace-mode           "whitespace" "Toggle whitespace visualization."        t)
 (autoload 'whitespace-toggle-options "whitespace" "Toggle local `whitespace-mode' options." t)
+;; ______________________________________________________________________
+
+
+;;
+;; whitespace
+;; ______________________________________________________________________
+(eval-after-load 'js2-mode
+  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+(eval-after-load 'json-mode
+  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+(eval-after-load 'sgml-mode
+  '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+
+(eval-after-load 'js2-mode
+  '(add-hook 'js2-mode-hook
+	     (lambda ()
+	       (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+(eval-after-load 'json-mode
+  '(add-hook 'json-mode-hook
+	     (lambda ()
+	       (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+(eval-after-load 'sgml-mode
+  '(add-hook 'html-mode-hook
+	     (lambda ()
+	       (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+(eval-after-load 'css-mode
+  '(add-hook 'css-mode-hook
+	     (lambda ()
+	       (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
 ;; ______________________________________________________________________
