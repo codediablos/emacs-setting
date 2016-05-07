@@ -5,9 +5,10 @@
 ;; list the packages you want
 (setq package-list '("auto-complete"))
 ;; list the repositories containing them
-(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-			 ("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")))
+(setq package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")))
+;;			 ("elpa" . "http://tromey.com/elpa/")
+;;			 ("gnu" . "http://elpa.gnu.org/packages/")
+;;			 ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; activate all the packages (in particular autoloads)
 (package-initialize)
@@ -17,9 +18,9 @@
   (package-refresh-contents))
 
 ;; install the missing packages
-;(dolist (package package-list)
-;  (unless (package-installed-p package)
-;    (package-install package))
+;;(dolist (package package-list)
+;;  (unless (package-installed-p package)
+;;    (package-install package))
 
 ;;### Add load path ###
 (let ((base "~/.emacs.d/elpa/"))
@@ -32,23 +33,11 @@
 	(add-to-list 'load-path name)))))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-w3m/")
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-jabber-0.8.91/")
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/magit")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/mo-git-blame")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/tramp-2.2.7/lisp/")
 
-(setq debug-on-error t)
+;;(setq debug-on-error t)
 
 ;; Show the current function name in the header line
 (which-function-mode)
-;;(setq-default header-line-format
-;;	      '((which-func-mode ("" which-func-format " "))))
-;;(setq mode-line-misc-info
-      ;; We remove Which Function Mode from the mode line, because it's mostly
-      ;; invisible here anyway.
-;;                  (assq-delete-all 'which-func-mode mode-line-misc-info))
 
 ;; check OS type
 (cond
@@ -66,22 +55,12 @@
   )
  )
 
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
-
 ;;### Add load custom theme path ###
-(add-to-list 'load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
-(add-to-list 'load-path "~/.emacs.d/themes/color-theme-sanityinc-tomorrow/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/ample-theme/")
-(require 'color-theme-sanityinc-tomorrow)
-(require 'color-theme-solarized)
 
 ;; ### require ###
-;;(require 'cedet)
 (require 'point-undo)
 (require 'sudoku)
-;;(require 'bitlbee)
-;; (require 'magit)
 
 (setq column-number-mode t)
 
@@ -143,13 +122,6 @@
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
-
-
-;;
-;; ### Using server mode ###
-;; ______________________________________________________________________
-;;(server-start)
-;; ______________________________________________________________________
 
 
 ;; ### emacs modes ###
@@ -343,16 +315,6 @@
 
 
 ;;
-;; Enable EDE (Project Management) features
-;; ______________________________________________________________________
-;;(require 'ecb)
-;;(global-ede-mode )1
-;; Enable SRecode (Template management) minor-mode.
-;;(global-srecode-minor-mode 1)
-;; ______________________________________________________________________
-
-
-;;
 ;; ido mode
 ;; ______________________________________________________________________
 (require 'ido)
@@ -389,15 +351,6 @@
 ;; nodejs-repl-mode
 ;;
 (require 'nodejs-repl)
-;; ______________________________________________________________________
-
-;;
-;; python-mode
-;;
-;;(require 'python-mode)
-
-;;(setq py-shell-name "ipython")
-;;(setq py-load-pymacs-p t)
 ;; ______________________________________________________________________
 
 ;;
@@ -471,36 +424,9 @@
   (set-face-attribute
    'diff-changed nil :foreground "purple"))
 (eval-after-load "diff-mode" '(custom-diff-colors))
-;; ______________________________________________________________________
 
 
-;;
-;; color-theme
-;; ______________________________________________________________________
-;;(require 'color-theme)
-;;(eval-after-load "color-theme"
-;;  '(progn
-;;     (color-theme-initialize)))
-;;     (color-theme-sanityinc-tomorrow-bright)))
-
-
-;;(load-theme 'bliss t)
 (load-theme 'monokai t)
-;;(load-theme 'zenburn t)
-;;(load-theme 'sanityinc-tomorrow-bright t)
-;;(load-theme 'solarized-dark t)
-;;(load-theme 'solarized-light t)
-;; ______________________________________________________________________
-
-
-;;
-;; jabber
-;; ______________________________________________________________________
-;;(require 'jabber)
-;;(setq jabber-account-list
-;;      '(("codediablos@gmail.com"
-;;	 (:network-server . "talk.google.com")
-;;	 (:connection-type . ssl))))
 ;; ______________________________________________________________________
 
 
@@ -614,15 +540,6 @@
 (setq text-mode-hook '(lambda()
                         (flyspell-mode t)
                         ))
-;; ______________________________________________________________________
-
-
-;;
-;; android mode
-;; ______________________________________________________________________
-;;(require 'android-mode)
-;;(setq android-mode-sdk-dir "~/Android/android-sdk-linux")
-;; (setq android-mode-sdk-dir "~/Android/android-sdks")
 ;; ______________________________________________________________________
 
 ;;
