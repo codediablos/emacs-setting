@@ -34,6 +34,11 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-async/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/helm/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-helm-gtags/")
+
+
 ;;(setq debug-on-error t)
 
 ;; Show the current function name in the header line
@@ -363,6 +368,63 @@ want to use in the modeline *in lieu of* the original.")
 	(setq count (1+ count)))
       (message "buffer contains %d words." count))))
 ;; ______________________________________________________________________
+
+;;
+;; gtags
+;; ______________________________________________________________________
+;;(autoload 'dired-async-mode "dired-async.el" nil t)
+;;(dired-async-mode 1)
+;;(require 'helm)
+;;(require 'helm-config)
+(require 'helm-gtags)
+
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'java-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+(add-hook 'dired-mode-hook 'helm-gtags-mode)
+(add-hook 'eshell-mode-hook 'helm-gtags-mode)
+
+;; customize
+(custom-set-variables
+ '(helm-gtags-path-style 'relative)
+ '(helm-gtags-ignore-case t)
+ '(helm-gtags-auto-update t))
+
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match    t)
+
+;; key bindings
+(eval-after-load "helm-gtags"
+  '(progn
+     (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+     (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
+     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+     (define-key helm-gtags-mode-map (kbd "C-c f") 'helm-gtags-find-files)
+     (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+     (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+     (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+     (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+     (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+     (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+     (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)))
+
+(semantic-mode 1)
+(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
+
+(require 'highlight-symbol)
+
+(highlight-symbol-nav-mode)
+
+(add-hook 'prog-mode-hook (lambda () (highlight-symbol-mode)))
+(add-hook 'org-mode-hook (lambda () (highlight-symbol-mode)))
+
+(setq highlight-symbol-idle-delay 0.2
+      highlight-symbol-on-navigation-p t)
+
+(global-set-key (kbd "M-n") 'highlight-symbol-next)
+(global-set-key (kbd "M-p") 'highlight-symbol-prev)
 
 
 ;;
