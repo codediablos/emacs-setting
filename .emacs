@@ -38,8 +38,10 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/helm/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-helm-gtags/")
 
+(global-flycheck-mode)
 
 ;;(setq debug-on-error t)
+;;(setq toggle-debug-on-quit t)
 
 ;; Show the current function name in the header line
 (which-function-mode)
@@ -537,7 +539,11 @@ want to use in the modeline *in lieu of* the original.")
   (set-face-attribute
    'diff-changed nil :foreground "purple"))
 (eval-after-load "diff-mode" '(custom-diff-colors))
+;; ______________________________________________________________________
 
+;;
+;; color-theme
+;; ______________________________________________________________________
 
 (load-theme 'monokai t)
 ;; ______________________________________________________________________
