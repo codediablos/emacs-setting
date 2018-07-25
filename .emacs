@@ -198,6 +198,7 @@ want to use in the modeline *in lieu of* the original.")
 (add-to-list 'auto-mode-alist '(".conf'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\Kconfig\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '(".dts" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 ;; ______________________________________________________________________
 
 ;;############ Enable narrow to region ##############
