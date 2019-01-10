@@ -340,6 +340,11 @@ want to use in the modeline *in lieu of* the original.")
 ;;(add-hook 'c-mode-hook 'kernel-coding)
 ;;(add-hook 'c++-mode-hook 'my-coding-style)
 
+(add-hook 'c-mode-common-hook 
+  (lambda()
+    (require 'dtrt-indent)
+    (dtrt-indent-mode t)))
+
 (put 'set-goal-column 'disabled nil)
 ;; ______________________________________________________________________
 
